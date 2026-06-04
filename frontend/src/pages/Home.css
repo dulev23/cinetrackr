@@ -1,0 +1,111 @@
+.home {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.home-hero {
+    text-align: center;
+    padding: 4rem 0 3rem;
+}
+
+.home-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #e2e2e2;
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+}
+
+.home-hero p {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0 0 2rem;
+}
+
+.home-cta {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    background: #e2e2e2;
+    color: #0a0a0a;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.home-cta:hover {
+    background: #fff;
+}
+
+.home-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+    margin-bottom: 3rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #e2e2e2;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.home-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.home-section-header h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e2e2e2;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.home-section-header a {
+    font-size: 0.8rem;
+    color: #555;
+    text-decoration: none;
+}
+
+.home-section-header a:hover {
+    color: #aaa;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.home-message {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.home-message.error {
+    color: #c0392b;
+}

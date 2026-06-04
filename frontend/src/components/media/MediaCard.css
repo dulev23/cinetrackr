@@ -1,0 +1,70 @@
+.media-card {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.media-card:hover {
+    transform: translateY(-4px);
+    border-color: #333;
+}
+
+.media-card-poster {
+    position: relative;
+    aspect-ratio: 2/3;
+    background: #1a1a1a;
+    overflow: hidden;
+}
+
+.media-card-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.media-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #333;
+    font-weight: 700;
+}
+
+.media-card-type {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.75);
+    color: #aaa;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.media-card-info {
+    padding: 0.75rem;
+}
+
+.media-card-info h3 {
+    margin: 0 0 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #e2e2e2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.media-card-info p {
+    margin: 0;
+    font-size: 0.78rem;
+    color: #555;
+}
