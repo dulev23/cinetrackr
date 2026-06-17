@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getAllMedia } from '../api/mediaApi';
+import { getUserMedia } from '../api/userMediaApi';
+import { useAuth } from '../context/AuthContext';
 import MediaCard from '../components/media/MediaCard';
 import './Media.css';
 
@@ -10,7 +12,9 @@ const FILTERS = [
 ];
 
 export default function MediaPage() {
+    const { user } = useAuth();
     const [media, setMedia] = useState([]);
+    const [userMedia, setUserMedia] = useState([]);
     const [filter, setFilter] = useState('ALL');
     const [search, setSearch] = useState('');
     const [loading, setLoading] = useState(true);
@@ -22,6 +26,20 @@ export default function MediaPage() {
             .catch(() => setError('Could not load media. Is the backend running?'))
             .finally(() => setLoading(false));
     }, []);
+
+    const fetchUserMedia = useCallback(() => {
+        if (!user) {
+            setUserMedia([]);
+            return;
+        }
+        getUserMedia(user.id)
+            .then(res => setUserMedia(res.data))
+            .catch(() => {});
+    }, [user]);
+
+    useEffect(() => {
+        fetchUserMedia();
+    }, [fetchUserMedia]);
 
     const filtered = media
         .filter(m => filter === 'ALL' || m.type === filter)
@@ -61,7 +79,15 @@ export default function MediaPage() {
             )}
 
             <div className="media-grid">
-                {filtered.map(m => <MediaCard key={m.id} media={m} />)}
+                {filtered.map(m => (
+                    <MediaCard
+                        key={m.id}
+                        media={m}
+                        userMedia={userMedia}
+                        userId={user?.id}
+                        onStatusChange={fetchUserMedia}
+                    />
+                ))}
             </div>
         </div>
     );

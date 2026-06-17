@@ -1,12 +1,9 @@
 package com.cinetrackr.web;
 
 import com.cinetrackr.dto.UserDTO;
-import com.cinetrackr.model.User;
 import com.cinetrackr.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -24,12 +21,17 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getById(@PathVariable Long id){
+    public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getById(id));
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO> login(@RequestBody UserDTO dto) {
+        return ResponseEntity.ok(userService.login(dto));
+    }
+
     @PostMapping("/username/{username}")
-    public ResponseEntity<UserDTO> getByUsername(@PathVariable String username){
+    public ResponseEntity<UserDTO> getByUsername(@PathVariable String username) {
         return ResponseEntity.ok(userService.getByUsername(username));
     }
 }

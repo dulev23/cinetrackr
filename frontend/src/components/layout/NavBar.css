@@ -1,37 +1,63 @@
 .navbar {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 0 2rem;
     height: 60px;
-    border-bottom: 1px solid #1e1e1e;
     background: #0a0a0a;
+    border-bottom: 1px solid #1e1e1e;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-.navbar-brand {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #e2e2e2;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-}
-
-.navbar-links {
+.nav-left,
+.nav-right {
     display: flex;
-    gap: 2rem;
+    gap: 1.75rem;
+    align-items: center;
 }
 
-.navbar-links a {
+.navbar a {
     color: #888;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     transition: color 0.2s;
 }
 
-.navbar-links a:hover,
-.navbar-links a.active {
+.navbar a:hover {
+    color: #e2e2e2;
+}
+
+.navbar a.active {
+    color: #e2e2e2;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #e2e2e2 !important;
+    letter-spacing: 0.02em;
+    margin-right: 0.5rem;
+}
+
+.username {
+    font-weight: 600;
+    color: #e2e2e2 !important;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #1e1e1e;
+    border-radius: 6px;
+    color: #888;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.logout-btn:hover {
+    border-color: #333;
     color: #e2e2e2;
 }

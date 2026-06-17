@@ -1,0 +1,75 @@
+.add-page {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.add-page form {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.add-page h1 {
+    font-size: 1.4rem;
+    color: #e2e2e2;
+    margin: 0 0 1rem;
+    text-align: center;
+}
+
+.add-page label {
+    font-size: 0.78rem;
+    color: #888;
+    margin-top: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.add-page input,
+.add-page select,
+.add-page textarea {
+    background: #0a0a0a;
+    border: 1px solid #1e1e1e;
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    color: #e2e2e2;
+    font-size: 0.9rem;
+    outline: none;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.add-page input:focus,
+.add-page select:focus,
+.add-page textarea:focus {
+    border-color: #333;
+}
+
+.add-page select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23888'><path d='M4 6l4 4 4-4'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 12px;
+}
+
+.add-page button {
+    background: #e2e2e2;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 1.2rem;
+}
+
+.add-page button:hover {
+    background: #fff;
+}

@@ -5,7 +5,6 @@ import com.cinetrackr.model.Media;
 import com.cinetrackr.model.User;
 import com.cinetrackr.model.UserMedia;
 import com.cinetrackr.model.enums.WatchStatus;
-import com.cinetrackr.model.exception.DuplicateEntityException;
 import com.cinetrackr.model.exception.ResourceNotFoundException;
 import com.cinetrackr.repository.MediaRepository;
 import com.cinetrackr.repository.UserMediaRepository;
@@ -46,20 +45,31 @@ public class UserMediaServiceImpl implements UserMediaService {
 
     @Override
     public UserMediaDTO add(UserMediaDTO dto) {
-        User user = this.userRepository.findById(dto.getUserId())
-                .orElseThrow(() -> new ResourceNotFoundException("User with id " + dto.getUserId() + " not found"));
-        Media media = this.mediaRepository.findById(dto.getMediaId())
-                .orElseThrow(() -> new ResourceNotFoundException("Media with id " + dto.getMediaId() + " not found"));
-        if (userMediaRepository.existsByUserIdAndMediaId(dto.getUserId(), dto.getMediaId())) {
-            throw new DuplicateEntityException("This media is already in the user's list");
-        }
-        UserMedia userMedia = new UserMedia();
-        userMedia.setUser(user);
-        userMedia.setMedia(media);
-        userMedia.setStatus(dto.getStatus());
-        userMedia.setRating(dto.getRating());
 
-        return toDTO(this.userMediaRepository.save(userMedia));
+        User user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Media media = mediaRepository.findById(dto.getMediaId())
+                .orElseThrow(() -> new RuntimeException("Media not found"));
+
+        UserMedia existing = userMediaRepository
+                .findByUserIdAndMediaId(dto.getUserId(), dto.getMediaId())
+                .orElse(null);
+
+        if (existing != null) {
+            existing.setStatus(dto.getStatus());
+            existing.setRating(dto.getRating());
+
+            return toDTO(userMediaRepository.save(existing));
+        }
+
+        UserMedia um = new UserMedia();
+        um.setUser(user);
+        um.setMedia(media);
+        um.setStatus(dto.getStatus());
+        um.setRating(dto.getRating());
+
+        return toDTO(userMediaRepository.save(um));
     }
 
     @Override

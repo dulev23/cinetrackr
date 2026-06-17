@@ -17,7 +17,7 @@ public class MediaController {
         this.mediaService = mediaService;
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public ResponseEntity<MediaDTO> create(@RequestBody MediaDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(mediaService.create(dto));
     }

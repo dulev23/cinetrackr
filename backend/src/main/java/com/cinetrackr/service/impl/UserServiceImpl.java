@@ -5,16 +5,17 @@ import com.cinetrackr.model.User;
 import com.cinetrackr.model.exception.ResourceNotFoundException;
 import com.cinetrackr.repository.UserRepository;
 import com.cinetrackr.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     private UserDTO toDTO(User user) {
@@ -51,6 +52,18 @@ public class UserServiceImpl implements UserService {
     public UserDTO getByUsername(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User with username: " + username + " not found"));
+        return toDTO(user);
+    }
+
+    @Override
+    public UserDTO login(UserDTO dto) {
+        User user = userRepository.findByUsername(dto.getUsername())
+                .orElseThrow(() -> new ResourceNotFoundException("User with username: " + dto.getUsername() + " not found"));
+
+        if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid credentials");
+        }
+
         return toDTO(user);
     }
 }

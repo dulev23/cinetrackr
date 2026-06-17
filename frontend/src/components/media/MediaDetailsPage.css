@@ -1,0 +1,153 @@
+.media-detail {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.media-detail-back {
+    display: inline-block;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.media-detail-back:hover {
+    color: #aaa;
+}
+
+.media-detail-content {
+    display: flex;
+    gap: 2rem;
+}
+
+.media-detail-poster {
+    flex-shrink: 0;
+    width: 280px;
+}
+
+.media-detail-poster img {
+    width: 100%;
+    border-radius: 10px;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+}
+
+.media-detail-placeholder {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background: #1a1a1a;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: #333;
+    font-weight: 700;
+}
+
+.media-detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-top: 0.25rem;
+}
+
+.media-detail-type {
+    align-self: flex-start;
+    background: #1a1a1a;
+    color: #888;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.media-detail-info h1 {
+    font-size: 2rem;
+    color: #e2e2e2;
+    margin: 0.25rem 0 0;
+}
+
+.media-detail-meta {
+    color: #555;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.media-detail-description {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 1rem 0;
+    max-width: 600px;
+}
+
+.media-detail-actions {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.media-detail-actions-label {
+    font-size: 0.75rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.media-detail-status-group {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.media-detail-status-group button {
+    background: transparent;
+    border: 1px solid #1e1e1e;
+    border-radius: 6px;
+    color: #888;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.media-detail-status-group button:hover:not(:disabled) {
+    border-color: #333;
+    color: #ccc;
+}
+
+.media-detail-status-group button.active {
+    background: #e2e2e2;
+    border-color: #e2e2e2;
+    color: #0a0a0a;
+}
+
+.media-detail-status-group button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.media-detail-login-hint {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.media-detail-login-hint a {
+    color: #aaa;
+    text-decoration: underline;
+}
+
+.media-detail-message {
+    text-align: center;
+    color: #555;
+    padding: 4rem;
+}
+
+.media-detail-message.error {
+    color: #c0392b;
+}

@@ -1,15 +1,45 @@
-import { Link, useLocation } from 'react-router-dom';
-import './Navbar.css';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import "./Navbar.css";
 
 export default function Navbar() {
+    const { user, logout } = useAuth();
     const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
+    };
+
+    const isActive = (path) => location.pathname === path;
 
     return (
         <nav className="navbar">
-            <Link to="/" className="navbar-brand">CineTrackr</Link>
-            <div className="navbar-links">
-                <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-                <Link to="/media" className={location.pathname === '/media' ? 'active' : ''}>Browse</Link>
+            <div className="nav-left">
+                <Link to="/" className="logo">CineTrackr</Link>
+                <Link to="/" className={isActive("/") ? "active" : ""}>Home</Link>
+                <Link to="/media" className={isActive("/media") ? "active" : ""}>Browse</Link>
+                {user && (
+                    <Link to="/my-list" className={isActive("/my-list") ? "active" : ""}>My List</Link>
+                )}
+                {user && (
+                    <Link to="/add-media" className={isActive("/add-media") ? "active" : ""}>Add Media</Link>
+                )}
+            </div>
+
+            <div className="nav-right">
+                {user ? (
+                    <>
+                        <Link to="/profile" className="username">{user.username}</Link>
+                        <button className="logout-btn" onClick={handleLogout}>Log out</button>
+                    </>
+                ) : (
+                    <>
+                        <Link to="/login" className={isActive("/login") ? "active" : ""}>Login</Link>
+                        <Link to="/register" className={isActive("/register") ? "active" : ""}>Register</Link>
+                    </>
+                )}
             </div>
         </nav>
     );
