@@ -1,0 +1,47 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: cinetrackr-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: cinetrackr
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - cinetrackr-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cinetrackr-backend
+    restart: unless-stopped
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/cinetrackr
+      CORS_ORIGINS: http://localhost
+    depends_on:
+      - mongodb
+    ports:
+      - "8080:8080"
+    networks:
+      - cinetrackr-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cinetrackr-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - cinetrackr-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  cinetrackr-network:
+    driver: bridge
