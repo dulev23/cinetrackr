@@ -31,7 +31,7 @@ public class UserMediaController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<UserMediaDTO>> getByUser(@PathVariable Long userId,
+    public ResponseEntity<List<UserMediaDTO>> getByUser(@PathVariable String userId,
                                                         @RequestParam(required = false) WatchStatus status) {
         if (status != null) {
             return ResponseEntity.ok(userMediaService.getByUserAndStatus(userId, status));
@@ -40,13 +40,13 @@ public class UserMediaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserMediaDTO> update(@PathVariable Long id,
+    public ResponseEntity<UserMediaDTO> update(@PathVariable String id,
                                                @RequestBody UserMediaDTO dto) {
         return ResponseEntity.ok(userMediaService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<UserMediaDTO> delete(@PathVariable Long id) {
+    public ResponseEntity<UserMediaDTO> delete(@PathVariable String id) {
         userMediaService.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class MediaDTO {
-    private Long id;
+    private String id;
     private String title;
     private MediaType type;
     private Integer releaseYear;

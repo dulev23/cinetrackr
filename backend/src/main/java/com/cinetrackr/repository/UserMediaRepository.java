@@ -2,14 +2,17 @@ package com.cinetrackr.repository;
 
 import com.cinetrackr.model.UserMedia;
 import com.cinetrackr.model.enums.WatchStatus;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UserMediaRepository extends JpaRepository<UserMedia, Long> {
-    boolean existsByUserIdAndMediaId(Long userId, Long mediaId);
-    List<UserMedia> findByUserId(Long userId);
-    List<UserMedia> findByUserIdAndStatus(Long userId, WatchStatus status);
-    Optional<UserMedia> findByUserIdAndMediaId(Long userId, Long mediaId);
+public interface UserMediaRepository extends MongoRepository<UserMedia, String> {
+    boolean existsByUserIdAndMediaId(String userId, String mediaId);
+
+    List<UserMedia> findByUserId(String userId);
+
+    List<UserMedia> findByUserIdAndStatus(String userId, WatchStatus status);
+
+    Optional<UserMedia> findByUserIdAndMediaId(String userId, String mediaId);
 }

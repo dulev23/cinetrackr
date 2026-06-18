@@ -48,7 +48,7 @@ public class MediaServiceImpl implements MediaService {
     }
 
     @Override
-    public MediaDTO getById(Long id) {
+    public MediaDTO getById(String id) {
         Media media = this.mediaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Media with id: " + id + " not found"));
         return toDTO(media);
@@ -63,7 +63,7 @@ public class MediaServiceImpl implements MediaService {
     }
 
     @Override
-    public MediaDTO update(Long id, MediaDTO dto) {
+    public MediaDTO update(String id, MediaDTO dto) {
         Media media = this.mediaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Media with id: " + id + " not found"));
 
@@ -78,7 +78,7 @@ public class MediaServiceImpl implements MediaService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         if (!this.mediaRepository.existsById(id)) {
             throw new ResourceNotFoundException("Media with id: " + id + " not found");
         }

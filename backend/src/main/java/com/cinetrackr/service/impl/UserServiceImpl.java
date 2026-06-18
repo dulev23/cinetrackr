@@ -35,14 +35,14 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         User saved = userRepository.save(user);
 
         return toDTO(saved);
     }
 
     @Override
-    public UserDTO getById(Long id) {
+    public UserDTO getById(String id) {
         User user = this.userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " not found"));
         return toDTO(user);

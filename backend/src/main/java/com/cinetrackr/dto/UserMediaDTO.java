@@ -6,9 +6,9 @@ import lombok.Data;
 
 @Data
 public class UserMediaDTO {
-    private Long id;
-    private Long userId;
-    private Long mediaId;
+    private String id;
+    private String userId;
+    private String mediaId;
 
     private String mediaTitle;
     private String mediaPosterUrl;

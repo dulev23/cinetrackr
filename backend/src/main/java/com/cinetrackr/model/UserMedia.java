@@ -1,28 +1,28 @@
 package com.cinetrackr.model;
 
 import com.cinetrackr.model.enums.WatchStatus;
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "user_media")
+@Document(collection = "user_media")
 public class UserMedia {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "media_id", nullable = false)
-    private Media media;
+    private String userId;
+    private String mediaId;
 
     private WatchStatus status;
     private double rating;
+    private String notes;
+
+    private LocalDateTime addedAt;
+    private LocalDateTime updatedAt;
 }
