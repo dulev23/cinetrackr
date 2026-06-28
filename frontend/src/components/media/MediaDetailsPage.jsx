@@ -14,7 +14,7 @@ const STATUS_OPTIONS = [
 export default function MediaDetailPage() {
     const { id } = useParams();
     const { user } = useAuth();
-    const mediaId = Number(id);
+    const mediaId = id;
 
     const [media, setMedia] = useState(null);
     const [entry, setEntry] = useState(null);
@@ -23,7 +23,7 @@ export default function MediaDetailPage() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!mediaId || isNaN(mediaId)) return;
+        if (!mediaId) return;
         getMediaById(mediaId)
             .then(res => setMedia(res.data))
             .catch(() => setError("Could not load this title."))
@@ -93,7 +93,7 @@ export default function MediaDetailPage() {
 
                 <div className="media-detail-info">
                     <span className="media-detail-type">
-                        {media.type === "SERIES" ? "TV Series" : "Movie"}
+                        {media.mediaType === "SERIES" ? "TV Series" : "Movie"}
                     </span>
                     <h1>{media.title}</h1>
                     <p className="media-detail-meta">
